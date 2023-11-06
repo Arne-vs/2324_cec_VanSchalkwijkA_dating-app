@@ -19,6 +19,8 @@ export default function App() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+
+  
   return (
     <NavigationContainer>
        <Tab.Navigator
