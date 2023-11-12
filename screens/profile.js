@@ -24,21 +24,23 @@ export default function Profile() {
       {profile.map(
         ({ name, image, location, distance, fetish, age, bio }, index) => {
           return (
+            <ScrollView style={styles.scrollview}>
             <View style={styles.container}>
+                
               <Text style={styles.name}>{name}</Text>
-              <ScrollView horizontal={true} style={styles.scrollview}>
               <View style={styles.imageAdd}>
                 <Image source={image} style={styles.image} />
                 <ImagePickerExample/>
               </View>
-              </ScrollView>
               <Text style={styles.bioTitel}>Bio</Text>
               <Text style={styles.bio}>{bio}</Text>
               <View style={styles.fetishAdd}>
                 <Text style={styles.fetish}>{fetish}</Text>
                 <Text style={styles.fetish}>{fetish}</Text>
               </View>
+              
             </View>
+            </ScrollView>
           );
         },
       )}
@@ -47,9 +49,6 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-  scrollview: {
-    flex: 1,  
-  },
   container: {
     margin: 24,
     marginTop: 64,
