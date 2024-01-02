@@ -1,4 +1,4 @@
-export const users = [
+/* export const users = [
   {
     id: 1,
     name: "Luciana Julia",
@@ -89,7 +89,65 @@ export const profile = [
     distance: 11,
     fetish: "Melolagnia",
     age: 19,
-    bio: "I make sick beats that I really love and have sexual fantasies about.",
+    bio: "I make sick beats that I really love, when im having sex or i jerk off i play my music in the background. It makes me cum twice as fast as normal.",
     image: require("../assets/kobe.jpg"),
   },
 ];
+*/
+
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+
+const FetchComponent = () => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://arne.vaw.be/dating_app/api.php')
+      .then(response => response.json())
+      .then(json => {
+        setData(json);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <ScrollView style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </ScrollView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ScrollView style={styles.container}>
+        <Text>Error fetching data: {error.message}</Text>
+      </ScrollView>
+    );
+  }
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text>Data from CMS:</Text>
+      {/* Render your data here */}
+      <Text>{JSON.stringify(data, null, 2)}</Text>
+
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  // Add other styles as needed
+});
+
+export default FetchComponent;

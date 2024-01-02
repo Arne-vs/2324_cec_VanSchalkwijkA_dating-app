@@ -25,8 +25,8 @@ export default function ImagePickerExample() {
 
   return (
     <View style={{flexDirection: 'row', gap: 16,}}>
-      {image && <Image source={{ uri: image }} style={{ width: width * 0.3, height: height * 0.15, borderRadius: 16,}} />}
-      <View style={{ width: width * 0.3, height: height * 0.15, borderRadius: 16, backgroundColor: 'lightgrey', justifyContent: 'center',}}>
+      {image && <Image source={{ uri: image }} style={{ width: 150, height: 150, borderRadius: 16,}} />}
+      <View style={{ width: 150, height: 150, borderRadius: 16, backgroundColor: 'lightgrey', justifyContent: 'center',}}>
       <Button title="Add photo" onPress={pickImage} color="black" />
       </View>
     </View>

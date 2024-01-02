@@ -122,6 +122,9 @@ export default function Home() {
           );
         })
         .reverse()}
+        <Text style={{color: 'black', position: 'absolute', top: 625, left: 48}}>
+          {users[0]?.bio}
+        </Text>
       {/* Render the Footer component */}
       <Footer handleChoice={handleChoice} />
     </View>

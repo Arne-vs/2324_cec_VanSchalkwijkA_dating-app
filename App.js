@@ -6,6 +6,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Messages from "./screens/messages";
 import CreateAccount from "./screens/createAccount";
 import Login from "./screens/login";
+import FetchComponent from "./utils/data";
+
 import {
   useFonts,
   Inter_900Black,
@@ -47,6 +49,11 @@ export default function App() {
           inactiveTintColor: "gray",
         }}
       >
+               <Tab.Screen
+          name="test"
+          component={FetchComponent}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen
           name="Profile"
           component={Profile}
