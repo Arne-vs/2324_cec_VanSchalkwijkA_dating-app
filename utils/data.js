@@ -1,4 +1,4 @@
-/* export const users = [
+export const users = [
   {
     id: 1,
     name: "Luciana Julia",
@@ -93,7 +93,7 @@ export const profile = [
     image: require("../assets/kobe.jpg"),
   },
 ];
-*/
+
 
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
@@ -107,7 +107,7 @@ const FetchComponent = () => {
     fetch('https://arne.vaw.be/dating_app/api.php')
       .then(response => response.json())
       .then(json => {
-        setData(json);
+        setData(json.users_account);
         setIsLoading(false);
       })
       .catch(err => {
@@ -137,6 +137,7 @@ const FetchComponent = () => {
       <Text>Data from CMS:</Text>
       {/* Render your data here */}
       <Text>{JSON.stringify(data, null, 2)}</Text>
+      <Text>{data.users_first_name}</Text>
 
     </ScrollView>
   );
