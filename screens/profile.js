@@ -5,54 +5,52 @@ import useData from "../utils/api";
 
 const { width, height } = Dimensions.get("screen");
 
-export default function Profile() {
-  const [userId, setUserId] = useState(null);
-  const { userData, isLoading, isError } = useData(userId);
+export default function Profile({ userData }) {
 
-  // Fetch user data when userId changes
-  useEffect(() => {
-    // You can set userId here based on some logic or user interaction
-    // For example, setting it to a specific value
-    setUserId(29); // Replace 123 with the desired userId
-  }, []);
-  
-
-  if (isLoading) {
+  // Check if userData exists
+  if (!userData) {
     return (
       <View>
-        <Text>Loading...</Text>
+        <Text>User not found</Text>
       </View>
     );
   }
-
-  if (isError) {
-    return (
-      <View>
-        <Text>Error fetching data...</Text>
-      </View>
-    );
-  }
-
-  // Render profile data if available
+console.log(userData.relationship_type);
+  // Render profile data
   return (
-    <View>
-    {userData ? (
-      <View>
-        <Text>User Details:</Text>
-        <Text>User ID: {userData.users_id}</Text>
-        <Text>Name: {userData.users_first_name}</Text>
-        {/* Display other user details */}
-      </View>
-    ) : (
-      <Text>User not found</Text>
-    )}
-  </View>
+    
+    <View style={styles.container}>
+      <Text style={styles.h1}>{userData.users_first_name}</Text>
+      <Image source={{uri: userData.photo_link}} style={{width: 120, height: 120}} />
+      <Text style={styles.h2}>Bio</Text>
+      <Text style={styles.p}>{userData.users_details}</Text>
+
+      {/* Display other user details */}
+    </View>
   );
 }
 
+
+
 const styles = StyleSheet.create({
-  text: {
-    margin: 30,
+  container: {
+    marginTop: 56,
+    marginLeft: 40
+  },
+  h1: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 24,
+  },
+  h2: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  p: {
+    fontSize: 16,
+    fontWeight: "regular",
+    marginBottom: 8,
   },
 });
 

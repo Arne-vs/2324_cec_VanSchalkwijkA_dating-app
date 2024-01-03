@@ -94,7 +94,7 @@ export const profile = [
   },
 ];
 
-
+/*
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 
@@ -135,7 +135,6 @@ const FetchComponent = () => {
   return (
     <ScrollView style={styles.container}>
       <Text>Data from CMS:</Text>
-      {/* Render your data here */}
       <Text>{JSON.stringify(data, null, 2)}</Text>
       <Text>{data.users_first_name}</Text>
 
@@ -152,3 +151,4 @@ const styles = StyleSheet.create({
 });
 
 export default FetchComponent;
+*/

@@ -14,10 +14,13 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [userData, setUserData] = useState(null);
+
 
   const handleLogin = (loggedInUsername) => {
     setUsername(loggedInUsername);
     setIsLoggedIn(true);
+    setUserData(sanitizedUserData);
   };
 
   const handleLogout = () => {
@@ -28,7 +31,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {!isLoggedIn ? (
-        <LoginScreen onLogin={handleLogin} />
+        <LoginScreen onLogin={handleLogin} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData}/>
       ) : (
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -57,9 +60,10 @@ export default function App() {
           />
           <Tab.Screen
             name="Profile"
-            component={Profile}
+            children={() => <Profile userData={userData} />}
             options={{ headerShown: false }}
           />
+
           <Tab.Screen
             name="Messages"
             component={Messages}
