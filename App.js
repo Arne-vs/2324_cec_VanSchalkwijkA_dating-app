@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavigationContainer } from "@react-navigation/native";
+import { DarkTheme, NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import Home from "./screens/home";
@@ -15,13 +15,18 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [userData, setUserData] = useState(null);
+  const [relationsData, setRelationsData] = useState(null);
 
 
   const handleLogin = (loggedInUsername) => {
     setUsername(loggedInUsername);
     setIsLoggedIn(true);
-    setUserData(sanitizedUserData);
+    const { userData } = useData(username, password);
+    setUserData(userData);
+    setRelationsData(relationsData);
+    // You can now use the `relationships` data in your app...
   };
+  
 
   const handleLogout = () => {
     setUsername('');
@@ -29,12 +34,15 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       {!isLoggedIn ? (
-        <LoginScreen onLogin={handleLogin} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData}/>
+        <LoginScreen onLogin={handleLogin} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} setRelationsData={setRelationsData}/>
       ) : (
         <Tab.Navigator
           screenOptions={({ route }) => ({
+            tabBarActiveTintColor: "#E92c7c",
+            tabBarInactiveTintColor: "#F3EFFE",
+            tabBarStyle: { padding: 4, height: 88 },
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
 
@@ -48,27 +56,25 @@ export default function App() {
               return <Ionicons name={iconName} size={size} color={color} />;
             },
           })}
-          tabBarOptions={{
-            activeTintColor: "hotpink",
-            inactiveTintColor: "gray",
-          }}
         >
-          <Tab.Screen
+        
+        <Tab.Screen
+            name="Profile"
+            children={() => <Profile userData={userData} relationsData={relationsData}/>}
+            options={{ headerShown: false }}
+          />
+
+            <Tab.Screen
             name="Home"
             component={Home}
             options={{ headerShown: false }}
           />
           <Tab.Screen
-            name="Profile"
-            children={() => <Profile userData={userData} />}
-            options={{ headerShown: false }}
-          />
-
-          <Tab.Screen
             name="Messages"
             component={Messages}
             options={{ headerShown: false }}
           />
+
         </Tab.Navigator>
       )}
     </NavigationContainer>

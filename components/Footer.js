@@ -13,7 +13,7 @@ const Footer = ({ handleChoice }) => {
     <View
       style={{
         position: "absolute",
-        bottom: 15,
+        bottom: 40,
         width: 240,
         flexDirection: "row",
         alignItems: "center",

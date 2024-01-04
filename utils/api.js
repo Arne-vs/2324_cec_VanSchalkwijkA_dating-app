@@ -1,4 +1,3 @@
-// useData.js
 import useSWR from 'swr';
 import fetcher from './_fetcher';
 
@@ -8,9 +7,23 @@ export default function useData(username, password) {
     fetcher
   );
 
+  let userData = null;
+  let relationships = null;
+  let isError = error;
+  if (data) {
+    if (data.success) {
+      userData = data.user_data;
+      relationships = data.relationship_type;
+    } else {
+      isError = data.message;
+    }
+  }
+
   return {
-    userData: data,
+    userData,
+    relationships,
     isLoading,
-    isError: error,
+    isError,
   };
 }
+

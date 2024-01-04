@@ -39,7 +39,7 @@ const Button = ({ name, size, color, onPress, style }) => {
         style={{
           height: 60,
           width: 60,
-          backgroundColor: "white",
+          backgroundColor: "#161616",
           elevation: 5,
           borderRadius: 40,
           justifyContent: "center",

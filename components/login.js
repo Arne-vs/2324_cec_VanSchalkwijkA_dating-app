@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Profile from '../screens/profile';
 
-const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData }) => {
+let exportedRelationshipName = '';
+
+const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,7 +22,15 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData }) => {
       const data = await response.json();
   
       if (data.success) {
-        const sanitizedUserData = sanitizeUserData(data.user_data); // Remove circular references
+        console.log(data);
+        console.log(data.relationship_type[0].relationship_name);
+        exportedRelationshipName = data.relationship_type[0].relationship_name; // Assign the value to the variable
+
+
+// Export the value
+
+        const sanitizedUserData = sanitizeUserData(data.user_data); // Remove circular references and include relationships
+ // Remove circular references
   
         setIsLoggedIn(true);
         setUserData(sanitizedUserData);
@@ -37,6 +48,7 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData }) => {
   
   // Function to sanitize user data and remove circular references
   const sanitizeUserData = (userData) => {
+
     // Implement logic to remove circular references
     // For example, you might create a sanitized object with only necessary properties
     const sanitizedData = {
@@ -48,42 +60,92 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData }) => {
       users_username: userData.users_username,
       users_password: userData.users_password,
       users_date_of_birth: userData.users_date_of_birth,
-      photo_link: userData.photo_link,
+
     };
     return sanitizedData;
   };
+
+  
   
   return (
     <View style={styles.container}>
       <Text>{error}</Text>
+      
+      <View style={styles.title}>
+      <Text style={styles.titleName}>Naam</Text>
+      <Text style={styles.h1}>Login</Text>
+      </View>
+      
       <TextInput
+        style={styles.fillIn}
         placeholder="Username"
+        placeholderTextColor="#F3EFFE"
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
       <TextInput
+        style={styles.fillIn}
+        placeholderTextColor="#F3EFFE"
         placeholder="Password"
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Login" onPress={() => handleLogin(username, password)} />
+      <TouchableOpacity  style={styles.button} onPress={() => handleLogin(username, password)}>
+        <Text style={styles.buttonT}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  h1: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 16,
+    color: "#F3EFFE",
+  },
+  titleName: {
+    fontSize: 48,
+    fontWeight: "bold",
+    marginBottom: 24,
+    color: "#F3EFFE",
+    marginTop: 56
+  },
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#161616",
     alignItems: "center",
-    justifyContent: "center",
   },
-  text: {
-    color: "#fff",
-    fontFamily: "Inter_900Black",
-    paddingTop: 10,
+  title: {
+    width: '80%',
+  },
+
+  button: {
+    width: '80%',
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: "#E92c7c",
+    borderRadius: 8,
+  },
+
+  buttonT: {
+   textAlign: "center",
+   fontWeight: "bold",
+   color: "#F3EFFE",
+  },
+
+  fillIn: {
+    width: '80%',
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: "#262626",
+    borderRadius: 8,
+    color: "#F3EFFE",
+    
   },
 });
+
+export { exportedRelationshipName };
 
 export default LoginScreen;

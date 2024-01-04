@@ -11,18 +11,18 @@ const { width, height } = Dimensions.get("screen");
 import { Fragment, useCallback } from "react";
 import Choice from "./Choice";
 
-const Card = ({
-  name,
-  age,
-  bio,
-  fetish,
-  location,
-  distance,
-  image,
-  isFirst,
-  swipe,
-  titlSign,
-  ...rest
+  const Card = ({
+    name,
+    age,
+    bio,
+    fetish,
+    location,
+    distance,
+    image,
+    isFirst,
+    swipe,
+    titlSign,
+    ...rest
 }) => {
   // Calculate the rotation of the card based on swipe gesture
   const rotate = Animated.multiply(swipe.x, titlSign).interpolate({
@@ -82,17 +82,16 @@ const Card = ({
     >
       <Image source={image} style={styles.image} />
       <LinearGradient
-        colors={["transparent", "rgba(0,0,0,.9)"]}
+        colors={["transparent", "#161616"]}
         style={styles.gradient}
       />
       <View style={styles.userContainer}>
         <Text style={styles.name}>
           {name}, {age}{" "}
         </Text>
-        <Text style={styles.location}>Live in {location}</Text>
-        <Text style={styles.distance}>{distance} miles away</Text>
-        <Text style={styles.fetish}>{fetish}</Text>
         <Text style={styles.bio}>{bio}</Text>
+        <Text style={styles.fetish}>{fetish}</Text>
+
       </View>
       {isFirst && renderChoice()}
     </Animated.View>
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.9,
-    height: height * 0.6,
+    height: height * 0.7,
     borderRadius: 20,
   },
   gradient: {
@@ -124,36 +123,27 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 30,
-    color: "#FFFFFF",
-    fontWeight: "400",
-  },
-  location: {
-    fontSize: 18,
-    color: "#FFFFFF",
-    fontWeight: "300",
-  },
-  distance: {
-    fontSize: 18,
-    color: "#FFFFFF",
-    fontWeight: "300",
+    color: "#F3EFFE",
+    fontWeight: "600",
+    marginBottom: 8,
   },
   bio: {
-    fontSize: 18,
-    color: "hotpink",
-    fontWeight: "300",
+    fontSize: 16,
+    color: "#F3EFFE",
+    fontWeight: "400",
   },
   fetish: {
     marginTop: 10,
-    fontSize: 18,
-    color: "#FFFFFF",
-    fontWeight: "300",
-    backgroundColor: "hotpink",
+    fontSize: 16,
+    color: "#F3EFFE",
+    fontWeight: "600",
+    backgroundColor: "#E92c7c",
     width: 100,
     textAlign: "center",
     padding: 5,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "hotpink",
+    borderColor: "#E92c7c",
     overflow: "hidden",
   },
   choiceContainer: {
