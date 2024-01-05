@@ -15,7 +15,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [userData, setUserData] = useState(null);
-  const [relationsData, setRelationsData] = useState(null);
+
 
 
   const handleLogin = (loggedInUsername) => {
@@ -23,7 +23,6 @@ export default function App() {
     setIsLoggedIn(true);
     const { userData } = useData(username, password);
     setUserData(userData);
-    setRelationsData(relationsData);
     // You can now use the `relationships` data in your app...
   };
   
@@ -36,7 +35,7 @@ export default function App() {
   return (
     <NavigationContainer theme={DarkTheme}>
       {!isLoggedIn ? (
-        <LoginScreen onLogin={handleLogin} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} setRelationsData={setRelationsData}/>
+        <LoginScreen onLogin={handleLogin} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData}/>
       ) : (
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -60,7 +59,7 @@ export default function App() {
         
         <Tab.Screen
             name="Profile"
-            children={() => <Profile userData={userData} relationsData={relationsData}/>}
+            children={() => <Profile userData={userData}/>}
             options={{ headerShown: false }}
           />
 

@@ -14,6 +14,9 @@ export default function useData(username, password) {
     if (data.success) {
       userData = data.user_data;
       relationships = data.relationship_type;
+      fetish = data.fetish_type;
+      gender = data.gender;
+      photo = data.photo;
     } else {
       isError = data.message;
     }
@@ -22,6 +25,9 @@ export default function useData(username, password) {
   return {
     userData,
     relationships,
+    photo,
+    gender,
+    fetish,
     isLoading,
     isError,
   };

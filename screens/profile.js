@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, Dimensions, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import useData from "../utils/api";
-import { exportedRelationshipName } from "../components/login";
 
 
 
@@ -10,6 +9,7 @@ import { exportedRelationshipName } from "../components/login";
 const { width, height } = Dimensions.get("screen");
 
 export default function Profile({ userData }) {
+  const [fetishCardWidth, setFetishCardWidth] = useState(100); // Initial width for the card
 
   // Check if userData exists
   if (!userData) {
@@ -20,14 +20,43 @@ export default function Profile({ userData }) {
     );
   }
 
+  const measureTextWidth = (text) => {
+    const textWidth = text.length * 10; // Adjust the factor for text length to width conversion
+    setFetishCardWidth(textWidth > 100 ? textWidth : 100); // Set minimum width as 100
+  };
+
   // Render profile data
   return (
     
     <View style={styles.container}>
       <Text style={styles.h1}>{userData.users_first_name} {userData.users_last_name}</Text>
+      <Image
+  source={{
+    uri: `https://arne.vaw.be/dating_app/${userData.photo_link}`,
+  }}
+  style={styles.photo}
+/>
       <Text style={styles.h2}>Bio</Text>
       <Text style={styles.p}>{userData.users_details}</Text>
-      <Text style={styles.p}>{exportedRelationshipName}</Text>
+      <Text style={styles.h2}>My interests</Text>
+      <View style={[styles.fetishCard, { width: fetishCardWidth }]}>
+        <Text
+          style={styles.fetish}
+          onLayout={(event) =>
+            measureTextWidth(userData.fetish_name)
+          }
+        >
+          {userData.fetish_name}
+        </Text>
+      </View>
+      <Text style={styles.h2}>Looking for</Text>
+      <Text style={styles.p}>{userData.relationship_name}</Text>
+      <Text style={styles.h2}>I would like to see</Text>
+      <Text style={styles.p}>{userData.gender_name}</Text>
+      
+
+
+
   </View>
   );
 }
@@ -35,6 +64,12 @@ export default function Profile({ userData }) {
 
 
 const styles = StyleSheet.create({
+  photo: {
+   width: 200,
+   height: 200,
+   marginBottom: 24,
+   borderRadius: 8,
+  },
   container: {
     marginTop: 56,
     marginLeft: 40
@@ -54,8 +89,24 @@ const styles = StyleSheet.create({
   p: {
     fontSize: 16,
     fontWeight: "regular",
-    marginBottom: 8,
+    marginBottom: 24,
     color: "#F3EFFE",
+  },
+  fetish: {
+    fontSize: 16,
+    color: "#F3EFFE",
+    fontWeight: "600",
+    textAlign: "center",
+
+  },
+  fetishCard: {
+    backgroundColor: "#E92c7c",
+    padding: 8,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#E92c7c",
+    overflow: "hidden",
+    marginBottom: 24,
   },
 });
 

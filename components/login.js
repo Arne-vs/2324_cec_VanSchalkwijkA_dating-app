@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Profile from '../screens/profile';
 
-let exportedRelationshipName = '';
-
 const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,17 +21,16 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
   
       if (data.success) {
         console.log(data);
-        console.log(data.relationship_type[0].relationship_name);
-        exportedRelationshipName = data.relationship_type[0].relationship_name; // Assign the value to the variable
 
 
 // Export the value
 
-        const sanitizedUserData = sanitizeUserData(data.user_data); // Remove circular references and include relationships
+        const sanitizedUserData = sanitizeUserData(data.user_data, data.relationships, data.fetish, data.photo, data.gender); // Remove circular references and include relationships
  // Remove circular references
   
         setIsLoggedIn(true);
         setUserData(sanitizedUserData);
+
         // ... Other necessary state updates or redirection to logged-in screens
       } else {
         // Handle login failure
@@ -47,7 +44,7 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
   };
   
   // Function to sanitize user data and remove circular references
-  const sanitizeUserData = (userData) => {
+  const sanitizeUserData = (userData, relationsData, fetishData, photoData, genderData) => {
 
     // Implement logic to remove circular references
     // For example, you might create a sanitized object with only necessary properties
@@ -60,7 +57,10 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
       users_username: userData.users_username,
       users_password: userData.users_password,
       users_date_of_birth: userData.users_date_of_birth,
-
+      relationship_name: relationsData[0],
+      fetish_name: fetishData[0],
+      photo_link: photoData[0],
+      gender_name: genderData[0],
     };
     return sanitizedData;
   };
@@ -146,6 +146,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export { exportedRelationshipName };
 
 export default LoginScreen;
