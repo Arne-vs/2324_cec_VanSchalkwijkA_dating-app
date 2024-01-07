@@ -73,7 +73,7 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
       <Text>{error}</Text>
       
       <View style={styles.title}>
-      <Text style={styles.titleName}>Naam</Text>
+      <Text style={styles.titleName}>KinkLink</Text>
       <Text style={styles.h1}>Login</Text>
       </View>
       
