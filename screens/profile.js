@@ -49,10 +49,16 @@ export default function Profile({ userData }) {
           {userData.fetish_name}
         </Text>
       </View>
-      <Text style={styles.h2}>Looking for</Text>
-      <Text style={styles.p}>{userData.relationship_name}</Text>
-      <Text style={styles.h2}>I would like to see</Text>
-      <Text style={styles.p}>{userData.gender_name}</Text>
+
+      <Text style={styles.h3}>Looking for</Text>
+      <View style={styles.relationship}>
+      <Text style={styles.pRelationship}>{userData.relationship_name}</Text>
+      </View>
+
+      <Text style={styles.h3}>I would like to see</Text>
+      <View style={styles.gender}>
+      <Text style={styles.pGender}>{userData.gender_name}</Text>
+      </View>
       
 
 
@@ -86,10 +92,27 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: "#F3EFFE",
   },
+  h3: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "#F3EFFE",
+  },
   p: {
     fontSize: 16,
     fontWeight: "regular",
     marginBottom: 24,
+    color: "#F3EFFE",
+  },
+  pGender: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#F3EFFE",
+  },
+
+  pRelationship: {
+    fontSize: 16,
+    fontWeight: "bold",
     color: "#F3EFFE",
   },
   fetish: {
@@ -108,6 +131,27 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginBottom: 24,
   },
+
+  gender: {
+    width: '90%',
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: "#262626",
+    borderRadius: 8,
+    color: "#F3EFFE",
+    
+  },
+
+  relationship: {
+    width: '90%',
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: "#262626",
+    borderRadius: 8,
+    color: "#F3EFFE",
+    
+  },
+  
 });
 
 

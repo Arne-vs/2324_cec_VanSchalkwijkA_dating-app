@@ -7,6 +7,7 @@ export const users = [
     fetish: "foot fetish",
     age: 23,
     bio: "Love to smell feet",
+    text: "you: heyy",
     image: require("../assets/user1.jpg"),
   },
   {
@@ -16,6 +17,7 @@ export const users = [
     distance: 11,
     fetish: "ear fetish",
     age: 24,
+    text: "William Ida: byee",
     bio: "I like to lick your ears",
     image: require("../assets/user2.jpg"),
   },
@@ -25,6 +27,7 @@ export const users = [
     location: "Portland illinois",
     distance: 11,
     fetish: "hair fetish",
+    text: "you: Want to meet?",
     age: 24,
     bio: "Love to smell hair",
     image: require("../assets/user3.jpg"),
@@ -35,6 +38,7 @@ export const users = [
     location: "Portland illinois",
     distance: 11,
     fetish: "hair fetish",
+    text: "you: How are you?",
     age: 24,
     bio: "Love to feel washed hair",
     image: require("../assets/user4.jpg"),
@@ -45,6 +49,7 @@ export const users = [
     location: "Portland illinois",
     distance: 11,
     fetish: "foot fetish",
+    text: "Jacquetta Bobalik: When will we meet?",
     age: 24,
     bio: "Love to smell feet",
     image: require("../assets/user5.jpg"),
@@ -56,6 +61,7 @@ export const users = [
     distance: 11,
     fetish: "foot fetish",
     age: 24,
+    text: "you: great you?",
     bio: "Love to smell feet",
     image: require("../assets/user6.jpg"),
   },
@@ -65,6 +71,7 @@ export const users = [
     location: "Portland illinois",
     distance: 11,
     fetish: "foot fetish",
+    text: "Karisa Delorm: Want to make a song togheter?",
     age: 24,
     bio: "Love to smell feet",
     image: require("../assets/user7.jpg"),
@@ -75,11 +82,50 @@ export const users = [
     location: "Portland illinois",
     distance: 11,
     fetish: "foot fetish",
+    text: "Cecil Agudelo: Great thanks",
     age: 24,
     bio: "Love to smell feet",
     image: require("../assets/user8.jpg"),
   },
 ];
+
+export const usersM = [
+  {
+    id: 1,
+    name: "Luciana Julia",
+    location: "Portland illinois",
+    distance: 11,
+    fetish: "foot fetish",
+    age: 23,
+    bio: "Love to smell feet",
+    text: "you: heyy",
+    image: require("../assets/user1.jpg"),
+  },
+  {
+    id: 2,
+    name: "William Ida",
+    location: "Portland illinois",
+    distance: 11,
+    fetish: "ear fetish",
+    age: 24,
+    text: "William Ida: byee",
+    bio: "I like to lick your ears",
+    image: require("../assets/user2.jpg"),
+  },
+  {
+    id: 3,
+    name: "Tracy Fradera",
+    location: "Portland illinois",
+    distance: 11,
+    fetish: "hair fetish",
+    text: "you: Want to meet?",
+    age: 24,
+    bio: "Love to smell hair",
+    image: require("../assets/user3.jpg"),
+  },
+  
+];
+
 
 export const profile = [
   {

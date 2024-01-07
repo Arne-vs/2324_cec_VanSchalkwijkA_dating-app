@@ -17,6 +17,7 @@ export default function useData(username, password) {
       fetish = data.fetish_type;
       gender = data.gender;
       photo = data.photo;
+      users = data.users_account
     } else {
       isError = data.message;
     }
@@ -28,8 +29,10 @@ export default function useData(username, password) {
     photo,
     gender,
     fetish,
+    otherUsersData,
     isLoading,
     isError,
+    users,
   };
 }
 

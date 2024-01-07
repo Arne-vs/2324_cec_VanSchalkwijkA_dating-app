@@ -21,6 +21,7 @@ const LoginScreen = ({ onLogin, setIsLoggedIn, setUserData}) => {
   
       if (data.success) {
         console.log(data);
+        console.log(data.users_account)
 
 
 // Export the value

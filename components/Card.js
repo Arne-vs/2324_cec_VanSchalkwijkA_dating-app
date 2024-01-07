@@ -11,18 +11,18 @@ const { width, height } = Dimensions.get("screen");
 import { Fragment, useCallback } from "react";
 import Choice from "./Choice";
 
-  const Card = ({
-    name,
-    age,
-    bio,
-    fetish,
-    location,
-    distance,
-    image,
-    isFirst,
-    swipe,
-    titlSign,
-    ...rest
+const Card = ({
+  name,
+  age,
+  bio,
+  fetish,
+  location,
+  distance,
+  image,
+  isFirst,
+  swipe,
+  titlSign,
+  ...rest
 }) => {
   // Calculate the rotation of the card based on swipe gesture
   const rotate = Animated.multiply(swipe.x, titlSign).interpolate({

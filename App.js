@@ -11,6 +11,7 @@ import allUserData from "./utils/data";
 
 const Tab = createBottomTabNavigator();
 
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -76,6 +77,7 @@ export default function App() {
 
         </Tab.Navigator>
       )}
+
     </NavigationContainer>
   );
 }
